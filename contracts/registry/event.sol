@@ -43,12 +43,12 @@ contract InstaEvent {
     function castEvent(
         address _origin,
         address _msgSender,
-        uint96 _msgValue,
+        uint _msgValue,
         address[] calldata _targets
     ) external {
         uint64 _ID = ListInterface(instaList).accountID(msg.sender);
         require(_ID != 0, "not-SA");
-        emit LogCast(_ID, _msgValue, _msgSender, _origin, squeeze(_targets));
+        emit LogCast(_ID, uint96(_msgValue), _msgSender, _origin, squeeze(_targets));
     }
 
     function connectorEvent(bytes4 _function, bytes calldata _eventData) external {
