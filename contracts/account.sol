@@ -94,7 +94,6 @@ contract Record {
 
 contract InstaAccount is Record {
 
-    event LogCast(address indexed origin, address indexed sender, uint value);
     event LogEthDeposit(address indexed _sender, uint _amt);
 
     /**
