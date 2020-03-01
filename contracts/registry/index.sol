@@ -27,6 +27,8 @@ contract AddressIndex {
     address public master;
     // The List Registry Address.
     address public list;
+    // The Event Address.
+    address public logEvent;
 
     // Connectors Modules(Account Module Version => Connectors Registry Module Address).
     mapping (uint => address) public connectors;
@@ -177,12 +179,14 @@ contract InstaIndex is CloneFactory {
     function setBasics(
         address _master,
         address _list,
+        address _logEvent,
         address _account,
         address _connectors
     ) external {
         require(
             master == address(0) &&
             list == address(0) &&
+            logEvent == address(0) &&
             account[1] == address(0) &&
             connectors[1] == address(0) &&
             versionCount == 0,
@@ -190,6 +194,7 @@ contract InstaIndex is CloneFactory {
         );
         master = _master;
         list = _list;
+        logEvent = _logEvent;
         versionCount++;
         account[versionCount] = _account;
         connectors[versionCount] = _connectors;

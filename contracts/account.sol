@@ -10,7 +10,7 @@ interface IndexInterface {
     function connectors(uint version) external view returns (address);
     function check(uint version) external view returns (address);
     function list() external view returns (address);
-    function instaEvent() external view returns (address);
+    function logEvent() external view returns (address);
 }
 
 interface ConnectorsInterface {
@@ -142,7 +142,7 @@ contract InstaAccount is Record {
         } else {
             require(ConnectorsInterface(indexContract.connectors(version)).isStaticConnector(_targets), "not-static-connector");
         }
-        EventInterface(indexContract.instaEvent()).castEvent(_origin, msg.sender, msg.value, _targets);
+        EventInterface(indexContract.logEvent()).castEvent(_origin, msg.sender, msg.value, _targets);
         for (uint i = 0; i < _targets.length; i++) {
             spell(_targets[i], _datas[i]);
         }
