@@ -148,7 +148,6 @@ contract InstaAccount is Record {
         }
         address _check = indexContract.check(version);
         if (_check != address(0) && !isShield) require(CheckInterface(_check).isOk(), "not-ok");
-        emit LogCast(_origin, msg.sender, msg.value);
     }
 
 }
